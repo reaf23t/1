@@ -1,40 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nicanva - Portfólio de Design</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR7 - A Lenda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Nicanva</h1>
-    <p>Designer gráfico especializado em posts criados no Canva</p>
-  </header>
+    <header class="hero">
+        <button id="theme-toggle">Modo Escuro</button>
+        <div class="hero-text">
+            <h1>CRISTIANO RONALDO: A LENDA DO FUTEBOL</h1>
+            <p>Da Madeira ao Mundo – A Jornada do Maior Artilheiro da História</p>
+            <a href="#timeline" class="cta-button">Explore a Trajetória ⚽</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://i.pinimg.com/originals/c1/f7/43/c1f7435835239a21098415f3f5562a98.jpg" alt="Cristiano Ronaldo em ação">
+        </div>
+    </header>
 
-  <main>
-    <section class="sobre">
-      <h2>Sobre</h2>
-      <p>
-        Olá! Eu sou o Nicanva, designer apaixonado por criar artes, posts e identidades visuais marcantes usando o Canva. 
-        Trabalho especialmente com posts para Instagram, sempre buscando criatividade, harmonia e impacto visual.<br>
-        Confira abaixo alguns exemplos do meu trabalho!
-      </p>
-    </section>
+    <main>
+        <section class="timeline">
+            <h2>Linha do Tempo</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2002-2003: Sporting CP</h3>
+                    <p>O início da jornada profissional em Portugal.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2003-2009: Manchester United</h3>
+                    <p>Primeira passagem gloriosa, com a primeira Champions League e Bola de Ouro.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2009-2018: Real Madrid</h3>
+                    <p>A era de ouro, quebrando recordes e conquistando 4 Champions League.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2018-2021: Juventus</h3>
+                    <p>Aventura na Itália, conquistando títulos nacionais.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2021-2022: Manchester United</h3>
+                    <p>O retorno a Old Trafford.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏆</div>
+                    <h3>2023-Presente: Al-Nassr</h3>
+                    <p>Novo capítulo na Arábia Saudita.</p>
+                </div>
+            </div>
+        </section>
 
-    <section class="portfolio">
-      <h2>Posts no Instagram</h2>
-      <div class="galeria">
-        <img src="imgs/post1.png" alt="Post de Instagram 1">
-        <img src="imgs/post2.png" alt="Post de Instagram 2">
-        <img src="imgs/post3.png" alt="Post de Instagram 3">
-        <!-- Adicione mais imagens se desejar -->
-      </div>
-    </section>
-  </main>
+        <section class="stats">
+            <h2>Estatísticas</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Gols na Carreira</h3>
+                    <p>890+</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Títulos da Champions</h3>
+                    <p>5</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Bolas de Ouro</h3>
+                    <p>5</p>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 Nicanva | Portfólio criado com inspiração nas cores do Canva</p>
-  </footer>
+        <section class="gallery">
+            <h2>Galeria de Momentos</h2>
+            <div class="gallery-grid">
+                <img src="https://i.pinimg.com/originals/31/b6/c1/31b6c123a4f16a13802758f855c27634.jpg" alt="CR7 celebrando">
+                <img src="https://i.pinimg.com/originals/c7/90/a6/c790a6c952e46b142994ea0dd9154a01.jpg" alt="CR7 com a taça da Champions">
+                <img src="https://i.pinimg.com/originals/a4/8a/8d/a48a8df0937a09a8449c334b726c04f9.jpg" alt="CR7 em ação pelo Real Madrid">
+                <img src="https://i.pinimg.com/originals/1e/1f/68/1e1f6805822f5c6e8e8b2a303104e183.jpg" alt="CR7 com a família">
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2>Melhores Momentos</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL_f-g_4_W8_d-j_4_9_x" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/cristiano" target="_blank">Instagram</a>
+            <a href="https://twitter.com/cristiano" target="_blank">Twitter</a>
+        </div>
+        <p>"Sonhe Grande. Trabalhe Duro. Nunca Desista." – CR7</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

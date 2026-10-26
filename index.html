@@ -2,39 +2,682 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nicanva - Portfólio de Design</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S. STARK OS - Ultimate Multi-Tool AI Hub</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/STLExporter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
-  <header>
-    <h1>Nicanva</h1>
-    <p>Designer gráfico especializado em posts criados no Canva</p>
+<body class="stark-theme">
+
+  <div class="hud-background">
+    <div class="hud-grid"></div>
+    <div class="hud-vignette"></div>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="stark-header">
+    <div class="header-left">
+      <div class="arc-reactor" id="arcReactor" title="ARC Reactor Core - Click to Pulse">
+        <div class="arc-ring ring-1"></div>
+        <div class="arc-ring ring-2"></div>
+        <div class="arc-core"></div>
+      </div>
+      <div class="brand-title">
+        <h1>J.A.R.V.I.S. <span>SYSTEMS v4.0</span></h1>
+        <p class="subtitle">STARK INDUSTRIES MULTI-TOOL OS & AI HUB</p>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="system-status">
+        <div class="status-item"><i class="fa-solid fa-microchip"></i> CPU: <span id="cpuUsage">12%</span></div>
+        <div class="status-item"><i class="fa-solid fa-memory"></i> RAM: <span id="ramUsage">4.2 GB</span></div>
+        <div class="status-item"><i class="fa-solid fa-network-wire"></i> NET: <span class="status-online">ONLINE</span></div>
+        <div class="status-item"><i class="fa-solid fa-bolt"></i> ARC CORE: <span id="powerLevel">100%</span></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="hud-btn voice-btn" id="toggleVoiceBtn" title="Ativar Reconhecimento de Voz JARVIS">
+        <i class="fa-solid fa-microphone"></i> <span>JARVIS VOICE</span>
+      </button>      <button class="hud-btn glow-cyan" id="jarvisSpeakBtn" title="Falar Status">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+      <div class="clock-display" id="starkClock">00:00:00</div>
+    </div>
   </header>
 
-  <main>
-    <section class="sobre">
-      <h2>Sobre</h2>
-      <p>
-        Olá! Eu sou o Nicanva, designer apaixonado por criar artes, posts e identidades visuais marcantes usando o Canva. 
-        Trabalho especialmente com posts para Instagram, sempre buscando criatividade, harmonia e impacto visual.<br>
-        Confira abaixo alguns exemplos do meu trabalho!
-      </p>
-    </section>
+  <!-- Main Container -->
+  <div class="stark-container">
 
-    <section class="portfolio">
-      <h2>Posts no Instagram</h2>
-      <div class="galeria">
-        <img src="imgs/post1.png" alt="Post de Instagram 1">
-        <img src="imgs/post2.png" alt="Post de Instagram 2">
-        <img src="imgs/post3.png" alt="Post de Instagram 3">
-        <!-- Adicione mais imagens se desejar -->
+    <!-- Sidebar Navigation -->
+    <nav class="stark-sidebar">
+      <ul class="nav-menu">
+        <li class="nav-item active" data-tab="tab-jarvis">
+          <i class="fa-solid fa-brain nav-icon"></i>
+          <span>JARVIS AI Core</span>
+        </li>
+        <li class="nav-item" data-tab="tab-3d">
+          <i class="fa-solid fa-cube nav-icon"></i>
+          <span>Modelos 3D</span>
+        </li>
+        <li class="nav-item" data-tab="tab-arduino">
+          <i class="fa-solid fa-microchip nav-icon"></i>
+          <span>Arduino C++</span>
+        </li>
+        <li class="nav-item" data-tab="tab-image">
+          <i class="fa-solid fa-wand-magic-sparkles nav-icon"></i>
+          <span>Criador de Imagens</span>
+        </li>
+        <li class="nav-item" data-tab="tab-audio">
+          <i class="fa-solid fa-music nav-icon"></i>
+          <span>Editor Áudio MP3</span>
+        </li>
+        <li class="nav-item" data-tab="tab-video">
+          <i class="fa-solid fa-film nav-icon"></i>
+          <span>Estúdio de Vídeo</span>
+        </li>
+        <li class="nav-item" data-tab="tab-website">
+          <i class="fa-solid fa-code nav-icon"></i>
+          <span>Criador de Sites</span>
+        </li>
+        <li class="nav-item" data-tab="tab-hub">
+          <i class="fa-solid fa-globe nav-icon"></i>
+          <span>Notícias & Filmes</span>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="jarvis-avatar">
+          <div class="avatar-pulse"></div>
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="avatar-info">
+          <div class="name">JARVIS AI</div>
+          <div class="state" id="jarvisState">PRONTO</div>
+        </div>
       </div>
-    </section>
-  </main>
+    </nav>
 
-  <footer>
-    <p>&copy; 2025 Nicanva | Portfólio criado com inspiração nas cores do Canva</p>
-  </footer>
+    <!-- Main Content Workspace -->
+    <main class="stark-workspace">
+
+      <!-- TAB 1: JARVIS AI CORE & ASSISTANT HUB -->
+      <section id="tab-jarvis" class="tab-content active">
+        <div class="panel-grid">
+          <div class="hud-panel main-ai-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-robot"></i> JARVIS AI CONSOLE & COMMAND CENTER</h2>
+              <div class="panel-actions">
+                <button class="hud-btn-sm" id="clearChatBtn"><i class="fa-solid fa-trash"></i> Limpar Chat</button>
+              </div>
+            </div>
+            <div class="chat-display" id="chatDisplay">
+              <div class="chat-message jarvis-msg">
+                <div class="msg-author"><i class="fa-solid fa-robot"></i> J.A.R.V.I.S.</div>
+                <div class="msg-text">Olá senhor. Todos os sistemas Stark estão 100% operacionais. Posso gerar modelos 3D, compilar código Arduino C++, editar áudio/vídeo/imagens, construir sites completos e buscar notícias e filmes em tempo real. Como posso servi-lo hoje?</div>
+                <div class="msg-time">Agora</div>
+              </div>
+            </div>
+            <div class="chat-input-area">
+              <div class="quick-prompts">
+                <button class="tag-btn" onclick="quickPrompt('Crie um código de piscar LED no Arduino com botão')">⚡ Code Arduino LED</button>
+                <button class="tag-btn" onclick="quickPrompt('Gerar modelo 3D de uma nave espacial')">🚀 Modelo 3D Nave</button>
+                <button class="tag-btn" onclick="quickPrompt('Criar estrutura de site Cyberpunk completo')">🌐 Gerar Website</button>
+                <button class="tag-btn" onclick="quickPrompt('Quais as últimas notícias de tecnologia e repositórios?')">📰 Notícias Tech</button>
+              </div>
+              <div class="input-wrapper">
+                <input type="text" id="aiInput" placeholder="Digite seu comando para JARVIS..." onkeydown="if(event.key==='Enter') sendJarvisMessage()">
+                <button class="hud-btn glow-cyan" onclick="sendJarvisMessage()"><i class="fa-solid fa-paper-plane"></i> ENVIAR</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hud-panel side-ai-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-sliders"></i> MÓDULOS DE AÇÃO RÁPIDA</h3>
+            </div>
+            <div class="quick-tools-grid">
+              <div class="tool-card" onclick="switchTab('tab-3d')">
+                <i class="fa-solid fa-cube"></i>
+                <h4>Estúdio 3D</h4>
+                <p>Criar & Exportar Objetos STL/OBJ</p>
+              </div>
+              <div class="tool-card" onclick="switchTab('tab-arduino')">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>Arduino C++</h4>
+                <p>Gerador de Códigos & Circuitos</p>
+              </div>
+              <div class="tool-card" onclick="switchTab('tab-image')">
+                <i class="fa-solid fa-image"></i>
+                <h4>Gerador de Arte</h4>
+                <p>Editor Canvas & Filtros IA</p>
+              </div>
+              <div class="tool-card" onclick="switchTab('tab-audio')">
+                <i class="fa-solid fa-waveform"></i>
+                <h4>Editor de MP3</h4>
+                <p>Cortar, Efeitos, Gravador WebAudio</p>
+              </div>
+              <div class="tool-card" onclick="switchTab('tab-video')">
+                <i class="fa-solid fa-video"></i>
+                <h4>Estúdio de Vídeo</h4>
+                <p>Gravação & Efeitos Visuais</p>
+              </div>
+              <div class="tool-card" onclick="switchTab('tab-website')">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h4>Criador de Sites</h4>
+                <p>Gerador Live Web Studio</p>
+              </div>
+            </div>
+
+            <div class="system-logs-box">
+              <h4><i class="fa-solid fa-terminal"></i> SYSTEM LOGS</h4>
+              <div class="logs-content" id="systemLogs">
+                [SYSTEM] Stark OS Engine v4.0 initialized.<br>
+                [AI] Voice synthesis module online.<br>
+                [3D ENGINE] WebGL 2.0 Renderer active.<br>
+                [AUDIO] Web Audio Context ready.<br>
+                [STATUS] All protocols secured.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: 3D MODEL STUDIO -->
+      <section id="tab-3d" class="tab-content">
+        <div class="panel-grid layout-3d">
+          <div class="hud-panel viewport-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-cube"></i> ESTÚDIO DE MODELAGEM 3D STARK</h2>
+              <div class="panel-actions">
+                <button class="hud-btn-sm" id="reset3DCameraBtn"><i class="fa-solid fa-eye"></i> Resetar Câmera</button>
+                <button class="hud-btn-sm glow-gold" id="exportSTLBtn"><i class="fa-solid fa-download"></i> Exportar STL (3D Print)</button>
+                <button class="hud-btn-sm glow-cyan" id="exportOBJBtn"><i class="fa-solid fa-file-export"></i> Exportar OBJ</button>
+              </div>
+            </div>
+            <div id="threeCanvasContainer" class="three-container"></div>
+            <div class="viewport-overlay-stats">
+              <span>Vértices: <strong id="vertCount">0</strong></span> |
+              <span>Faces: <strong id="faceCount">0</strong></span> |
+              <span>Malha: <strong id="currentMeshName">Cubo Stark</strong></span>
+            </div>
+          </div>
+
+          <div class="hud-panel controls-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-gears"></i> PARÂMETROS E GERADOR</h3>
+            </div>
+            <div class="controls-body">
+              <div class="control-group">
+                <label><i class="fa-solid fa-shapes"></i> Geometria Base:</label>
+                <select id="shapeSelect" onchange="change3DShape()">
+                  <option value="cube">Cubo Futurista</option>
+                  <option value="sphere">Esfera Reator Arc</option>
+                  <option value="cylinder">Cilindro Hidráulico</option>
+                  <option value="torus">Torus Magnético (Anel)</option>
+                  <option value="spaceship">Nave Stark Interceptador</option>
+                  <option value="robot">Capacete / Drone Stark</option>
+                  <option value="customCode">Geometria Paramétrica Personalizada</option>
+                </select>
+              </div>
+
+              <div class="control-group">
+                <label><i class="fa-solid fa-palette"></i> Cor do Material:</label>
+                <input type="color" id="meshColorPicker" value="#00f0ff" onchange="update3DMaterial()">
+              </div>
+
+              <div class="control-group">
+                <label><i class="fa-solid fa-border-all"></i> Modo Wireframe / Holograma:</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="wireframeToggle" onchange="update3DMaterial()">
+                  <span class="slider"></span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label><i class="fa-solid fa-arrows-rotate"></i> Auto-Rotação:</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="autoRotateToggle" checked onchange="toggle3DRotation()">
+                  <span class="slider"></span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label>Escala do Objeto: <span id="scaleVal">1.0</span></label>
+                <input type="range" id="meshScaleRange" min="0.2" max="3" step="0.1" value="1" oninput="update3DScale()">
+              </div>
+
+              <div class="control-group">
+                <label>Brilho / Metalness: <span id="metalVal">0.8</span></label>
+                <input type="range" id="meshMetalRange" min="0" max="1" step="0.05" value="0.8" oninput="update3DMaterial()">
+              </div>
+
+              <div class="ai-generator-box">
+                <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Gerador 3D por Inteligência Artificial</h4>
+                <textarea id="ai3dPrompt" placeholder="Ex: Crie um reator Arc 3D com formato octogonal..."></textarea>
+                <button class="hud-btn glow-cyan" style="width:100%" onclick="generateAI3DModel()">
+                  <i class="fa-solid fa-bolt"></i> EXTRAIR E GERAR MODELO 3D
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ARDUINO C++ STUDIO -->
+      <section id="tab-arduino" class="tab-content">
+        <div class="panel-grid layout-arduino">
+          <div class="hud-panel editor-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-microchip"></i> ESTÚDIO ARDUINO C++ STARK</h2>
+              <div class="panel-actions">
+                <button class="hud-btn-sm glow-cyan" onclick="compileArduinoCode()"><i class="fa-solid fa-play"></i> Verificar / Compilar C++</button>
+                <button class="hud-btn-sm glow-gold" onclick="downloadArduinoCode()"><i class="fa-solid fa-download"></i> Baixar .INO</button>
+              </div>
+            </div>
+            <div class="code-editor-wrapper">
+              <textarea id="arduinoCodeEditor" class="code-editor" spellcheck="false">// J.A.R.V.I.S. Arduino C++ Generator & Studio
+// Stark Industries Firmware v4.0
+
+#define LED_PIN 13
+#define SENSOR_PIN A0
+#define BUZZER_PIN 9
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+  Serial.println("JARVIS Hardware Interface Online.");
+}
+
+void loop() {
+  int val = analogRead(SENSOR_PIN);
+  Serial.print("Sensor Readout: ");
+  Serial.println(val);
+
+  if (val > 500) {
+    digitalWrite(LED_PIN, HIGH);
+    tone(BUZZER_PIN, 1000, 100);
+  } else {
+    digitalWrite(LED_PIN, LOW);
+  }
+  delay(200);
+}
+</textarea>
+            </div>
+            <div class="compiler-console" id="arduinoConsole">
+              <div class="console-line success">[SUCCESS] Código C++ verificado sem erros. Pronto para gravação no ATmega328P.</div>
+            </div>
+          </div>
+
+          <div class="hud-panel options-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-robot"></i> GERADOR DE CÓDIGO IA</h3>
+            </div>
+            <div class="controls-body">
+              <div class="control-group">
+                <label>Selecione um Preset de Projeto:</label>
+                <select id="arduinoPreset" onchange="loadArduinoPreset()">
+                  <option value="blink">LED Pisca-Pisca Simples</option>
+                  <option value="sensor">Leitura de Sensor Analógico + Serial</option>
+                  <option value="servo">Controle de Servomotor PWM</option>
+                  <option value="ultrasonic">Sensor Ultrassônico HC-SR04</option>
+                  <option value="display">Display LCD / OLED I2C Stark</option>
+                  <option value="bluetooth">Automação Bluetooth HC-05</option>
+                  <option value="stepper">Motor de Passo (Stepper Motor)</option>
+                </select>
+              </div>
+
+              <div class="ai-generator-box">
+                <h4><i class="fa-solid fa-brain"></i> Criador de Código C++ por IA</h4>
+                <p class="subtext">Descreva o circuito ou comportamento que deseja:</p>
+                <textarea id="arduinoPrompt" placeholder="Ex: Crie um código para controlar 4 relés via comandos na porta Serial e mostrar no LCD..."></textarea>
+                <button class="hud-btn glow-cyan" style="width:100%" onclick="generateArduinoAI()">
+                  <i class="fa-solid fa-code"></i> GERAR CÓDIGO ARDUINO C++
+                </button>
+              </div>
+
+              <div class="pinout-guide">
+                <h4><i class="fa-solid fa-diagram-project"></i> Diagrama de Pinos Rápido</h4>
+                <ul class="pin-list">
+                  <li><span class="pin digital">D13</span> LED Embutido</li>
+                  <li><span class="pin analog">A0</span> Entrada Analógica</li>
+                  <li><span class="pin pwm">D9</span> Saída PWM / Buzzer</li>
+                  <li><span class="pin power">5V / GND</span> Alimentação</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: IMAGE CREATOR & EDITOR -->
+      <section id="tab-image" class="tab-content">
+        <div class="panel-grid layout-image">
+          <div class="hud-panel image-viewport-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-wand-magic-sparkles"></i> CRIADOR E EDITOR DE IMAGENS</h2>
+              <div class="panel-actions">
+                <label class="hud-btn-sm glow-cyan" for="imageUploadInput" style="cursor:pointer">
+                  <i class="fa-solid fa-upload"></i> Carregar Imagem
+                </label>
+                <input type="file" id="imageUploadInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+                <button class="hud-btn-sm glow-gold" onclick="exportEditedImage()"><i class="fa-solid fa-download"></i> Baixar Imagem</button>
+              </div>
+            </div>
+            <div class="canvas-workspace">
+              <canvas id="imageCanvas"></canvas>
+            </div>
+          </div>
+
+          <div class="hud-panel image-tools-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-sliders"></i> FERRAMENTAS & FILTROS</h3>
+            </div>
+            <div class="controls-body">
+              <div class="ai-generator-box">
+                <h4><i class="fa-solid fa-robot"></i> Criar Imagem IA (Prompt Generator)</h4>
+                <input type="text" id="aiImagePrompt" placeholder="Ex: Stark HUD Interface Hologram, Neon Cyan, 4k...">
+                <select id="aiImageStyle">
+                  <option value="cyberpunk">Estilo Cyberpunk Stark</option>
+                  <option value="futuristic">Holograma Neon 3D</option>
+                  <option value="sketch">Esboço Blueprint Técnico</option>
+                  <option value="abstract">Arte Abstrata Digital</option>
+                </select>
+                <button class="hud-btn glow-cyan" style="width:100%; margin-top:10px" onclick="generateAIImage()">
+                  <i class="fa-solid fa-paint-brush"></i> GERAR IMAGEM IA
+                </button>
+              </div>
+
+              <hr class="stark-divider">
+
+              <h4>Ajustes de Filtros</h4>
+              <div class="control-group">
+                <label>Brilho: <span id="brightVal">100%</span></label>
+                <input type="range" id="brightRange" min="0" max="200" value="100" oninput="applyImageFilters()">
+              </div>
+              <div class="control-group">
+                <label>Contraste: <span id="contrastVal">100%</span></label>
+                <input type="range" id="contrastRange" min="0" max="200" value="100" oninput="applyImageFilters()">
+              </div>
+              <div class="control-group">
+                <label>Saturação: <span id="satVal">100%</span></label>
+                <input type="range" id="satRange" min="0" max="200" value="100" oninput="applyImageFilters()">
+              </div>
+              <div class="control-group">
+                <label>Matiz (Hue): <span id="hueVal">0deg</span></label>
+                <input type="range" id="hueRange" min="0" max="360" value="0" oninput="applyImageFilters()">
+              </div>
+              <div class="control-group">
+                <label>Inverter Cores / Sepia:</label>
+                <button class="hud-btn-sm" onclick="toggleInvert()">Inverter</button>
+                <button class="hud-btn-sm" onclick="toggleSepia()">Sépia</button>
+                <button class="hud-btn-sm" onclick="resetImageFilters()">Resetar</button>
+              </div>
+
+              <hr class="stark-divider">
+
+              <h4>Adicionar Texto na Imagem</h4>
+              <input type="text" id="overlayTextInput" placeholder="Texto para overlay...">
+              <div style="display:flex; gap:10px; margin-top:8px;">
+                <input type="color" id="overlayTextColor" value="#00f0ff">
+                <button class="hud-btn-sm glow-cyan" onclick="addTextToCanvas()">Adicionar Texto</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: AUDIO MP3 EDITOR -->
+      <section id="tab-audio" class="tab-content">
+        <div class="panel-grid layout-audio">
+          <div class="hud-panel audio-main-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-music"></i> EDITOR E PROCESSADOR DE ÁUDIO MP3</h2>
+              <div class="panel-actions">
+                <label class="hud-btn-sm glow-cyan" for="audioFileInput" style="cursor:pointer">
+                  <i class="fa-solid fa-upload"></i> Carregar Áudio MP3
+                </label>
+                <input type="file" id="audioFileInput" accept="audio/*" style="display:none" onchange="loadAudioFile(event)">
+                <button class="hud-btn-sm glow-gold" onclick="exportAudioWAV()"><i class="fa-solid fa-download"></i> Exportar Áudio</button>
+              </div>
+            </div>
+
+            <div class="waveform-container">
+              <canvas id="waveformCanvas" height="150"></canvas>
+            </div>
+
+            <div class="audio-transport-controls">
+              <button class="hud-btn-circle" id="audioPlayBtn" onclick="toggleAudioPlay()"><i class="fa-solid fa-play"></i></button>
+              <button class="hud-btn-circle" id="audioStopBtn" onclick="stopAudio()"><i class="fa-solid fa-stop"></i></button>
+              <button class="hud-btn-circle mic-rec-btn" id="micRecordBtn" onclick="toggleMicRecord()"><i class="fa-solid fa-microphone"></i></button>
+              <div class="audio-time"><span id="audioCurrentTime">00:00</span> / <span id="audioDuration">00:00</span></div>
+            </div>
+
+            <div class="visualizer-container">
+              <canvas id="freqVisualizerCanvas" height="120"></canvas>
+            </div>
+          </div>
+
+          <div class="hud-panel audio-effects-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-sliders"></i> EFEITOS DE ÁUDIO & IGUALADOR</h3>
+            </div>
+            <div class="controls-body">
+              <div class="control-group">
+                <label>Volume Master: <span id="volVal">100%</span></label>
+                <input type="range" id="audioVolRange" min="0" max="2" step="0.05" value="1" oninput="updateAudioEffects()">
+              </div>
+              <div class="control-group">
+                <label>Velocidade / Pitch: <span id="pitchVal">1.0x</span></label>
+                <input type="range" id="audioPitchRange" min="0.5" max="2" step="0.1" value="1" oninput="updateAudioEffects()">
+              </div>
+              <div class="control-group">
+                <label>Filtro Passa-Baixa (Bass Cut): <span id="filterVal">OFF</span></label>
+                <input type="range" id="audioFilterRange" min="20" max="15000" value="15000" oninput="updateAudioEffects()">
+              </div>
+
+              <hr class="stark-divider">
+
+              <h4>Ferramentas de Edição</h4>
+              <button class="hud-btn glow-cyan" style="width:100%; margin-bottom:8px;" onclick="trimAudioSelection()">
+                <i class="fa-solid fa-scissors"></i> Cortar Seleção
+              </button>
+              <button class="hud-btn glow-gold" style="width:100%; margin-bottom:8px;" onclick="applyEchoEffect()">
+                <i class="fa-solid fa-wave-square"></i> Aplicar Efeito Echo Stark
+              </button>
+              <button class="hud-btn" style="width:100%" onclick="reverseAudio()">
+                <i class="fa-solid fa-backward"></i> Inverter Áudio
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: VIDEO STUDIO -->
+      <section id="tab-video" class="tab-content">
+        <div class="panel-grid layout-video">
+          <div class="hud-panel video-player-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-film"></i> ESTÚDIO E GRAVADOR DE VÍDEO</h2>
+              <div class="panel-actions">
+                <label class="hud-btn-sm glow-cyan" for="videoFileInput" style="cursor:pointer">
+                  <i class="fa-solid fa-upload"></i> Carregar Vídeo
+                </label>
+                <input type="file" id="videoFileInput" accept="video/*" style="display:none" onchange="loadVideoFile(event)">
+                <button class="hud-btn-sm glow-gold" id="recordWebcamBtn" onclick="toggleWebcamRecord()"><i class="fa-solid fa-video"></i> Gravar Webcam</button>
+              </div>
+            </div>
+
+            <div class="video-container">
+              <video id="mainVideoPlayer" controls style="display:none;"></video>
+              <canvas id="videoCanvas"></canvas>
+            </div>
+
+            <div class="video-controls-bar">
+              <button class="hud-btn-sm glow-cyan" onclick="exportCanvasVideo()"><i class="fa-solid fa-circle-down"></i> Exportar Gravação WebM</button>
+            </div>
+          </div>
+
+          <div class="hud-panel video-effects-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-wand-magic"></i> EFEITOS HUD & OVERLAYS</h3>
+            </div>
+            <div class="controls-body">
+              <div class="control-group">
+                <label>Filtro de Vídeo Stark:</label>
+                <select id="videoFilterSelect" onchange="updateVideoFilter()">
+                  <option value="none">Normal</option>
+                  <option value="cyber">Cyberpunk Cyan HUD</option>
+                  <option value="night">Visão Noturna Stark</option>
+                  <option value="iron">Iron Red & Gold</option>
+                  <option value="matrix">Matrix Code Green</option>
+                  <option value="bw">Preto e Branco Vintage</option>
+                </select>
+              </div>
+
+              <div class="control-group">
+                <label>Ativar HUD Stark Overlay:</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="hudOverlayToggle" checked onchange="renderVideoFrame()">
+                  <span class="slider"></span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label>Legenda / Overlay de Texto:</label>
+                <input type="text" id="videoTextOverlay" placeholder="Digite texto para a tela..." oninput="renderVideoFrame()">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 7: WEBSITE BUILDER -->
+      <section id="tab-website" class="tab-content">
+        <div class="panel-grid layout-website">
+          <div class="hud-panel web-code-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-code"></i> CRIADOR E EDITOR DE SITES COMPLETO</h2>
+              <div class="panel-actions">
+                <button class="hud-btn-sm glow-cyan" onclick="updateWebPreview()"><i class="fa-solid fa-rotate"></i> Atualizar Preview</button>
+                <button class="hud-btn-sm glow-gold" onclick="downloadWebsiteCode()"><i class="fa-solid fa-download"></i> Baixar HTML</button>
+              </div>
+            </div>
+
+            <div class="web-editor-tabs">
+              <button class="web-tab-btn active" onclick="switchWebCodeTab('html')">HTML</button>
+              <button class="web-tab-btn" onclick="switchWebCodeTab('css')">CSS</button>
+              <button class="web-tab-btn" onclick="switchWebCodeTab('js')">JS</button>
+            </div>
+
+            <textarea id="webHtmlEditor" class="code-editor" oninput="updateWebPreview()"><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Site Futurista</title>
+</head>
+<body>
+  <div class="hero">
+    <h1>Bem-vindo ao Novo Futuro</h1>
+    <p>Site gerado instantaneamente com a Inteligência Artificial JARVIS STARK.</p>
+    <button onclick="alert('Sistema Stark Ativado!')">Explorar Mais</button>
+  </div>
+</body>
+</html></textarea>
+            <textarea id="webCssEditor" class="code-editor" style="display:none;" oninput="updateWebPreview()">body {
+  background: #090d16;
+  color: #00f0ff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.hero {
+  text-align: center;
+  border: 2px solid #00f0ff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,240,255,0.4);
+}
+button {
+  background: #00f0ff;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}</textarea>
+            <textarea id="webJsEditor" class="code-editor" style="display:none;" oninput="updateWebPreview()">console.log('Site Stark carregado com sucesso!');</textarea>
+          </div>
+
+          <div class="hud-panel web-preview-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-laptop"></i> PREVIEW AO VIVO</h3>
+              <div class="preset-selectors">
+                <button class="hud-btn-sm" onclick="loadWebTemplate('portfolio')">Template Portfólio</button>
+                <button class="hud-btn-sm" onclick="loadWebTemplate('landing')">Landing Page IA</button>
+                <button class="hud-btn-sm" onclick="loadWebTemplate('cyber')">Cyber Dashboard</button>
+              </div>
+            </div>
+            <iframe id="webPreviewFrame" class="web-preview-iframe"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: REPOSITORIES NEWS & MOVIES EXPLORER -->
+      <section id="tab-hub" class="tab-content">
+        <div class="panel-grid layout-hub">
+          <div class="hud-panel news-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-newspaper"></i> CENTRAL DE NOTÍCIAS & REPOSITÓRIOS DEV</h2>
+              <button class="hud-btn-sm glow-cyan" onclick="fetchLiveTechNews()"><i class="fa-solid fa-arrows-rotate"></i> Atualizar Feeds</button>
+            </div>
+            <div class="news-feed-list" id="techNewsContainer">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+
+          <div class="hud-panel movies-panel">
+            <div class="panel-header">
+              <h2><i class="fa-solid fa-clapperboard"></i> EXPLORADOR DE FILMES & SÉRIES</h2>
+              <div class="search-box-sm">
+                <input type="text" id="movieSearchInput" placeholder="Buscar filme ou série..." onkeydown="if(event.key==='Enter') searchMovies()">
+                <button class="hud-btn-sm glow-cyan" onclick="searchMovies()"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+            </div>
+            <div class="movies-grid" id="moviesGridContainer">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/three3d.js"></script>
+  <script src="js/arduino.js"></script>
+  <script src="js/image_editor.js"></script>
+  <script src="js/audio_editor.js"></script>
+  <script src="js/video_editor.js"></script>
+  <script src="js/site_builder.js"></script>
+  <script src="js/news_movies.js"></script>
+
 </body>
 </html>
